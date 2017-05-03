@@ -12,7 +12,7 @@
   </head>
   <body align="center" onload='responsiveVoice.speak("Welcome to American Airlines");'>
       <img src="images/logo.png" alt="logo">
-    <h2>Welcome </h2>
+    <h2>Welcome! </h2>
     <form class="ab form-group">
       <label for="pnr">Voice your PNR:</label>
       <input class="form-control text-center" type="text" id="user" placeholder="Your Speech Output"/>
@@ -63,7 +63,6 @@
             if (uservoice[0]==obj.pnr) {
               $("#aa").text("");
               $('#arr').text("Your flight's expected arrival time is "+obj.arrival+". For further queries contact Help Desk");
-              $("body").append("<input onclick='responsiveVoice.speak($('"'"#arr"'"').text());' type='button' value='🔊 Play' />");
               uservoice.pop();//removed the pnr after displaying the details
               $("#help").text("");
 

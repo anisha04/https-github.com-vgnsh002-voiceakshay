@@ -12,7 +12,7 @@
   </head>
   <body align="center" onload='responsiveVoice.speak("Welcome to American Airlines");'>
       <img src="images/logo.png" alt="logo">
-    <h2>Welcome!!! </h2>
+    <h2>Welcome! </h2>
     <form class="ab form-group">
       <label for="pnr">Voice your PNR:</label>
       <input class="form-control text-center" type="text" id="user" placeholder="Your Speech Output"/>
@@ -55,6 +55,7 @@
             $("#aa").text(obj.hello);
             uservoice.push(rest);//stored the pnr in the array so that it can be accessed globally
             $("#help").text("Tap the button and Say *SHOW* to display more details")
+            $("#play").remove();
           }
           else if (user=="show") {//works only when user says show and both the pnr are matching
             if (uservoice[0]==obj.pnr) {

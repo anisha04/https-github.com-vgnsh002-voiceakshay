@@ -12,7 +12,7 @@
   </head>
   <body align="center" onload='responsiveVoice.speak("Welcome to American Airlines");'>
       <img src="images/logo.png" alt="logo">
-    <h2>Welcome! </h2>
+    <h2>Welcome!! </h2>
     <form class="ab form-group">
       <label for="pnr">Voice your PNR:</label>
       <input class="form-control text-center" type="text" id="user" placeholder="Your Speech Output"/>
@@ -36,12 +36,10 @@
             $('#pnr').val(vail);
             var vpnr=vail;
             $('#user').val(vail);
-
           },
           'show *vail1':function(vail1){
             $('#user').val(vail1);
           }
-
         };
         annyang.addCallback('end', function () {//this is annyangs inbuilt callback function and it runs when the user stops speaking
            $.ajax({//we are using jquery's ajax method to retrive data asynchronously
@@ -57,36 +55,32 @@
             $("#aa").text(obj.hello);
             uservoice.push(rest);//stored the pnr in the array so that it can be accessed globally
             $("#help").text("Tap the button and Say *SHOW* to display more details")
-
           }
           else if (user=="show") {//works only when user says show and both the pnr are matching
             if (uservoice[0]==obj.pnr) {
               $("#aa").text("");
               $('#arr').text("Your flight's expected arrival time is "+obj.arrival+". For further queries contact Help Desk");
-              $("body").append("<input onclick='responsiveVoice.speak($(\"#arr\").text());' type='button' value='🔊 Play' />");
+              $("body").append("<input onclick='responsiveVoice.speak($(\"#arr\").text());' id='play' type='button' value='🔊 Play' />");
               uservoice.pop();//removed the pnr after displaying the details
               $("#help").text("");
-
             }
             else {
               $("#aa").text("");
               $('#arr').text("No PNR input/Invalid PNR");
               $("#help").text("");
             }
-
           }else{
             uservoice.pop();
             $("#arr").text("");
             $("#aa").text("Check Your PNR");
             $("#help").text("");
+            $("#play").remove();
           }
         }
       });
         });
         annyang.addCommands(commands);
-
       }
-
     </script>
   </body>
 </html>

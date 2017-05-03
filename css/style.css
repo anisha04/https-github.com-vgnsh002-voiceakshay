@@ -10,7 +10,15 @@ img {
 }
 #pnr{
   margin:0 auto;
+  border: solid 2px;
+  border-color: #ddd;
 }
+#user{
+  margin:0 auto;
+  border: solid 2px;
+  border-color: #ddd;
+}
+
 body{
   margin:0;
   background:#f7f7f9;
@@ -33,14 +41,14 @@ body{
   color: #fff;
   background-color: #4CAF50;
   border: none;
-  border-radius: 7px;
+  border-radius: 10px;
   /*box-shadow: 0 9px #999;*/
 }
 
-.button:hover {background-color: #3e8e41}
+.button:hover {background-color: #3f8e41}
 
 .button:active {
-  background-color: #3e8e41;
+  background-color: #3ea3fa;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }

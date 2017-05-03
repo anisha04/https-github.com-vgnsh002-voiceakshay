@@ -15,9 +15,15 @@
 
     <script type="text/javascript">
           var app = angular.module("myApp",['ngRoute']);
+      myApp.controller("aboutController", 
+		function($scope) {
+			alert("I am an alert from controller assosiated with about.html");
+	}
+);
           app.config(function($routeProvider){
             $routeProvider.when("/contact",{
               templateUrl: "contact.html",
+              controller: "aboutController"
             }).otherwise({
               redirectTo: "/",
             });
@@ -52,7 +58,7 @@
 
 
       <img src="images/logo.png" alt="logo">
-    <h2>Welcome! </h2>
+    <h2>Welcome!!! </h2>
     <div ng-view>
 
     </div>

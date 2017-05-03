@@ -13,24 +13,24 @@
   <body align="center">
       <img src="images/logo.png" alt="logo">
     <h2>Welcome !</h2>
-
     <form class="ab form-group">
       <label for="pnr">Voice your PNR:</label>
       <input class="form-control text-center" type="text" id="user" placeholder="Your Speech Output"/>
       <input class="form-control text-center" type="number" id="pnr" placeholder="Your PNR appears here"/>
       <br>
       <h6 id="help"></h6>
+      <!-- annyang will only listen when the below button is pressed -->
       <button class="button" type="button" onclick="annyang.start({ autoRestart: false, continuous: false })" name="button">Tap to Speak</button>
     </form>
     <h2 class="abc">Find the status of Your flight</h2>
     <h2 id="aa"></h2>
     <h3 id="arr"></h3>
-    <input onclick='responsiveVoice.speak($("#arr").text());' type='button' value='🔊 Play' />
 
-    <script type="text/javascript">
-      var uservoice=[];
-
+    <script type="text/javascript" onload='responsiveVoice.speak("Welcome to American Airlines");'>
+      var uservoice=[];//an array to store user commands globally so that we can use them later
+      //the below if commang checks whether the current browser suports annyang or not
       if(annyang){
+        //all the commands are stored here
         var commands = {
           '*vail':function(vail){
             $('#pnr').val(vail);
@@ -43,28 +43,29 @@
           }
 
         };
-        annyang.addCallback('end', function () {
-           $.ajax({
+        annyang.addCallback('end', function () {//this is annyangs inbuilt callback function and it runs when the user stops speaking
+           $.ajax({//we are using jquery's ajax method to retrive data asynchronously
         url: "data.json",
         success: function(response){
           var res = JSON.stringify(response);
           var obj = JSON.parse(res);
           var rest = $("#pnr").val();
           var user =$("#user").val();
+          //below are some validations that work only when the user spoken pnr is equal to the pnr in the json file
           if(rest==obj.pnr){
-            $("#arr").text("");
+            $("#arr").text("");//this line is used to clear the message when it is not required.
             $("#aa").text(obj.hello);
-            uservoice.push(rest);
+            uservoice.push(rest);//stored the pnr in the array so that it can be accessed globally
             $("#help").text("Tap the button and Say *SHOW* to display more details")
 
           }
-          else if (user=="show") {
+          else if (user=="show") {//works only when user says show and both the pnr are matching
             if (uservoice[0]==obj.pnr) {
               $("#aa").text("");
               $('#arr').text("Your flight's expected arrival time is "+obj.arrival+". For further queries contact Help Desk");
-              uservoice.pop();
+              uservoice.pop();//removed the pnr after displaying the details
               $("#help").text("");
-            
+
             }
             else {
               $("#aa").text("");
